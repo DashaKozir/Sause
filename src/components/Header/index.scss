@@ -1,0 +1,32 @@
+.header-container {
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: $background-color;
+
+  &__logo {
+    width: 150px;
+    height: 80px;
+  }
+
+  &__title {
+    color: $color-main;
+    font-size: 40px;
+    font-weight: bolder;
+    text-transform: capitalize;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header-container {
+    &__logo {
+      width: 100px;
+      height: 50px;
+    }
+
+    &__title {
+      font-size: 20px;
+    }
+  }
+}
