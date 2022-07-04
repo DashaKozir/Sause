@@ -35,6 +35,12 @@ const MainPage: FC = () => {
         }
     }
 
+    const findError = (e: any) => {
+        if (isNaN(e.key)) {
+            setError(true)
+        } else setError(false)
+    }
+
     useEffect(() => {
         try {
           const res = axios.get<IResponse>(`http://www.floatrates.com/daily/${baseCurrency}.json`)
@@ -58,12 +64,6 @@ const MainPage: FC = () => {
             // convert()
         }
     }, [dailyRate])
-
-    const findError = (e: any) => {
-       if (isNaN(e.key)) {
-           setError(true)
-       } else setError(false)
-    }
 
     return (
         <div className="main">
