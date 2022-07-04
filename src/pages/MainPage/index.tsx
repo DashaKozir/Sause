@@ -14,6 +14,7 @@ interface IResponse {
 const MainPage: FC = () => {
     const [curOptions, setCurOptions] = useState<any>([]);
     const [output, setOutput] = useState<number>(0);
+    const [error, setError] = useState<boolean>(false);
 
     const {
         converterReducer: { dailyRate, baseCurrency, amountToConv, convCurrency },
@@ -58,16 +59,25 @@ const MainPage: FC = () => {
         }
     }, [dailyRate])
 
+    const findError = (e: any) => {
+       if (isNaN(e.key)) {
+           setError(true)
+       } else setError(false)
+    }
+
     return (
         <div className="main">
             <div className="container">
                 <div className="main__left">
                     <h3>Amount</h3>
                     <input
-                        type="text"
+                        type="number"
+                        min="1"
                         placeholder="Enter the amount"
+                        onKeyDown={(e: any) => findError(e)}
                         onChange={(e: any) => setAmountToConv(e.target.value)}
                     />
+                    {error && <span className='error'>Only numbers allowed</span>}
                 </div>
                 <div className="main__middle">
                     <h3>From</h3>
